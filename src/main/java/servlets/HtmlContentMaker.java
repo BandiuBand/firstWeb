@@ -100,7 +100,7 @@ public class HtmlContentMaker {
 
     private static String getHrefToDownload(File file){
         String encodedFilePath = URLEncoder.encode(getPathOfFile(file));
-        return "<a href=\"downloadFile.jsp?path=" + encodedFilePath + "\">"+file.getName()+"</a>";
+        return "<a href=\"downloadFile?path=" + encodedFilePath + "\">"+file.getName()+"</a>";
     }
 
     private static boolean isTxt(File file){
