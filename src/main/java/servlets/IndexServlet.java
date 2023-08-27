@@ -16,6 +16,7 @@ public class IndexServlet extends HttpServlet {
             String root = HtmlContentMaker.getRoot();
             String servletPath = request.getContextPath() + "/dir";
             String fullPath = servletPath + "?path=/";
+            response.setCharacterEncoding("UTF-8");
             response.sendRedirect(fullPath);
         }
 

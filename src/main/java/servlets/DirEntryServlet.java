@@ -15,6 +15,7 @@ public class DirEntryServlet extends HttpServlet {
     //with name dirEntry.jsp
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
         String path = URLDecoder.decode(request.getParameter("path"), StandardCharsets.UTF_8);
         PrintWriter printWriter = response.getWriter();
         printWriter.println(HtmlContentMaker.getContent(path));

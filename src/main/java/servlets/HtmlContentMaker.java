@@ -39,11 +39,19 @@ public class HtmlContentMaker {
     }
 
     private static String contentAfterTable() {
-        return null; //toDo
+        return  "</body>\n" +
+                "</html>";
     }
 
     private static String contentBeforeTable() {
-        return null; //toDo
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<meta charset=\"UTF-8\">" +
+                "    <title>"+"Файловий Менеджер"+"</title>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "    <a href=\"/firstWeb/index\">Додому</a>\n";
     }
 
     private static File[] getFileList(String path){
