@@ -72,7 +72,7 @@ public class HtmlContentMaker {
         String name = file.getName();
         String pathOfFile = getPathOfFile(file);
         String href = getHrefToFile(file);
-        String hrefOfDelete = "delete";//toDo
+        String hrefOfDelete = getHrefDelete(file);//toDo
         return String.format("<tr><td>%s<td/><td>%s<td/><tr/>",href,hrefOfDelete);
     }
     private static String getPathOfFile(File file){
@@ -109,6 +109,13 @@ public class HtmlContentMaker {
     private static String getHrefToDownload(File file){
         String encodedFilePath = URLEncoder.encode(getPathOfFile(file));
         return "<a href=\"downloadFile?path=" + encodedFilePath + "\">"+file.getName()+"</a>";
+    }
+
+    private static String getHrefDelete(File file){
+        String encodedFilePath = URLEncoder.encode(getPathOfFile(file)+"/");
+        if(file.isDirectory())
+            return "";
+        return "<a href=\"delete?path=" + encodedFilePath + "\">"+"DELETE"+"</a>";
     }
 
     private static boolean isTxt(File file){
