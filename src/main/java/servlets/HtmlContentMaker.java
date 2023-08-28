@@ -18,7 +18,7 @@ public class HtmlContentMaker {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(contentBeforeTable());
         stringBuilder.append(getTable(path));
-        stringBuilder.append(contentAfterTable());
+        stringBuilder.append(contentAfterTable(path));
         return stringBuilder.toString();
     }
 
@@ -32,6 +32,7 @@ public class HtmlContentMaker {
             if(file==null)
                 System.out.println("file is null");
             else {
+                System.out.print("file inside directory:"+path+"  name - ");
                 System.out.println(file.getName());
                 stringBuilder.append(makeRow(file)).append("\n");
             }
@@ -69,10 +70,7 @@ public class HtmlContentMaker {
         return previousDirPath;
     }
 
-    private static String contentAfterTable() {
-        return  "</body>\n" +
-                "</html>";
-    }
+
 
     private static String contentBeforeTable() {
         return "<!DOCTYPE html>\n" +
@@ -83,6 +81,14 @@ public class HtmlContentMaker {
                 "</head>\n" +
                 "<body>\n" +
                 "    <a href=\"/firstWeb/index\">Додому</a>\n";
+    }
+    private static String contentAfterTable(String path) {
+        return  "</body>\n" +
+                "</html>";
+    }
+
+    private static String getFormForCreateTxt(String path) {
+        return null;//todo
     }
 
     private static File[] getFileList(String path){
