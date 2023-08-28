@@ -23,9 +23,11 @@ public class HtmlContentMaker {
     }
 
     private static String getTable(String path){
-        StringBuilder stringBuilder = new StringBuilder();//toDo
+        StringBuilder stringBuilder = new StringBuilder();
         File[] listOfFiles = getFileList(path);
         stringBuilder.append("<table>").append("\n");
+
+        stringBuilder.append(getRowOfBack(path));
         for (File file:listOfFiles) {
             if(file==null)
                 System.out.println("fill is null");
@@ -36,6 +38,12 @@ public class HtmlContentMaker {
         }
         stringBuilder.append("<table/>").append("\n");
         return stringBuilder.toString();
+    }
+
+    private static String getRowOfBack(String path){
+        File dir = new File(parentDirectory+path);
+        String returnRow = makeRow(dir);
+        return returnRow.replace(dir.getName(),"  ...  ");
     }
 
     private static String contentAfterTable() {
