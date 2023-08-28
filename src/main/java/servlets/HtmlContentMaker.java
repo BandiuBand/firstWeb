@@ -30,7 +30,7 @@ public class HtmlContentMaker {
         stringBuilder.append(getRowOfBack(path));
         for (File file:listOfFiles) {
             if(file==null)
-                System.out.println("fill is null");
+                System.out.println("file is null");
             else {
                 System.out.println(file.getName());
                 stringBuilder.append(makeRow(file)).append("\n");
@@ -40,27 +40,33 @@ public class HtmlContentMaker {
         return stringBuilder.toString();
     }
 
-    private static String getRowOfBack(String pathIn){
-        String path = pathIn.replaceAll("\\\\","/");
+    private static String getRowOfBack(String path){
+
         if (path.length()<=1)
             return "";
-        String dirPath = null;
-        if (path.endsWith("/"))
-            dirPath = path.substring(0,path.length()-1);
-        else dirPath = path;
-        System.out.print("make row of back from directory:"+ dirPath);
-        String previousDirPath = null;
-        if (dirPath.indexOf("/")<0)
-            previousDirPath = "/";
-        else
-            previousDirPath= dirPath.substring(0,dirPath.lastIndexOf("/"));
-        System.out.println(" to directory:" + previousDirPath);
-        File dir = new File(parentDirectory+previousDirPath);
+
+        File dir = new File(parentDirectory+getPreviousDirectoryPath(path));
 
         String encodedFilePath = URLEncoder.encode(getPathOfFile(dir)+"/");
         String href = "<a href=\"dir?path=" + encodedFilePath + "\">"+" ... "+"</a>";
 
         return String.format("<tr><td>%s<td/><td>%s<td/><tr/>",href,"");
+    }
+
+    private static String getPreviousDirectoryPath(String pathIn){
+        String path = pathIn.replaceAll("\\\\","/");
+        String dirPath = null;
+        if (path.endsWith("/"))
+            dirPath = path.substring(0,path.length()-1);
+        else dirPath = path;
+        System.out.print("make row of back from directory:\"/"+ dirPath+"\"");
+        String previousDirPath = null;
+        if (dirPath.indexOf("/")<0)
+            previousDirPath = "/";
+        else
+            previousDirPath= dirPath.substring(0,dirPath.lastIndexOf("/"));
+        System.out.println(" to directory:\"" + previousDirPath);
+        return previousDirPath;
     }
 
     private static String contentAfterTable() {
@@ -86,7 +92,7 @@ public class HtmlContentMaker {
             filesList= (Objects.requireNonNull(directory.listFiles()));
         }
         else if(!directory.exists()) {
-            System.out.println("isnt exist");
+            System.out.println("isn't exist");
         }
         return filesList;
     }
