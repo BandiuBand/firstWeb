@@ -52,4 +52,13 @@
         <servlet-name>OpenTxtServlet</servlet-name>
         <url-pattern>/openTxt</url-pattern>
     </servlet-mapping>
+p    <servlet>
+        <servlet-name>SaveTxtServlet</servlet-name>
+        <servlet-class>servlets.SaveTxtServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SaveTxtServlet</servlet-name>
+        <url-pattern>/save</url-pattern>
+    </servlet-mapping>
+
 </web-app>
