@@ -83,12 +83,22 @@ public class HtmlContentMaker {
                 "    <a href=\"/firstWeb/index\">Додому</a>\n";
     }
     private static String contentAfterTable(String path) {
-        return  "</body>\n" +
+        return  getFormForCreateTxt(path)+
+                "</body>\n" +
                 "</html>";
     }
 
     private static String getFormForCreateTxt(String path) {
-        return null;//todo
+        String nameOfFile = "fileName";
+        String contentTxt = "contentTxt";
+        return "<form action=\"save\" method=\"post\"accept-charset=\"UTF-8\">\n" +
+                        "    <p>Им'я файлу</p>\n" +
+                        "    <input type=\"text\" name=\"fileName\" size=\"50\">\n" +
+                        "    <p>Введіть текст</p>\n" +
+                        "    <textarea name=\"contentTxt\" rows=\"30\" cols=\"50\"></textarea>\n" +
+                        "    <input type=\"hidden\" name=\"path\" value=\""+path+"\">\n" +
+                        "    <br><input type=\"submit\" value=\"Зберегти в цю папку\">\n" +
+                        "</form>";
     }
 
     private static File[] getFileList(String path){
